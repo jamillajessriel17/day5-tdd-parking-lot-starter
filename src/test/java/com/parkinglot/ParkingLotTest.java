@@ -8,8 +8,9 @@ public class ParkingLotTest {
     @Test
     void should_return_parking_ticket_when_park_given_parking_lot_and_a_car() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot(car);
+
         //when
         ParkingTicket parkingTicket = parkingLot.park(car);
         //then
@@ -19,11 +20,12 @@ public class ParkingLotTest {
     @Test
     void should_return_a_car_when_fetch_given_parking_ticket_and_parked_car() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
-        ParkingTicket parkingTicket = new ParkingTicket();
         Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot(car);
+        ParkingTicket parkingTicket = new ParkingTicket();
+
         //when
-        Car fetchCar = parkingLot.fetch(parkingTicket, car);
+        Car fetchCar = parkingLot.fetch(parkingTicket);
         //then
         Assertions.assertEquals(car, fetchCar);
     }
