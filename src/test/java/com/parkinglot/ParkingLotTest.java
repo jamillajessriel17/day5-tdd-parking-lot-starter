@@ -49,7 +49,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_null_when_fetch_given_parking_lot_and_wrong_ticket() {
+    void should_return_UnrecognizedParkingTicketException_when_fetch_given_parking_lot_and_wrong_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingTicket wrongParkingTicket = new ParkingTicket();
@@ -63,7 +63,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_null_when_fetch_given_parking_lot_and_used_parking_ticket() {
+    void should_return_UnrecognizedParkingTicketException_when_fetch_given_parking_lot_and_used_parking_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
@@ -79,7 +79,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_null_when_park_given_parking_lot_without_position_and_a_car() {
+    void should_return_NoAvailablePositionException_when_park_given_parking_lot_without_position_and_a_car() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
