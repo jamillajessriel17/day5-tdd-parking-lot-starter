@@ -33,7 +33,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_the_right_car_when_fetch_twice_given_two_parked_cars_and_two_parking_tickets() {
+    void should_return_the_right_car_when_fetch_twice_given_two_parked_cars_and_two_parking_tickets() {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
@@ -49,7 +49,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_null_when_fetch_given_parking_lot_and_wrong_ticket() {
+    void should_return_null_when_fetch_given_parking_lot_and_wrong_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingTicket wrongParkingTicket = new ParkingTicket();
@@ -63,7 +63,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_null_when_fetch_given_parking_lot_and_used_parking_ticket() {
+    void should_return_null_when_fetch_given_parking_lot_and_used_parking_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
