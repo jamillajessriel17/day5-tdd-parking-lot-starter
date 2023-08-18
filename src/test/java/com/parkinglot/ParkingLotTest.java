@@ -34,14 +34,13 @@ public class ParkingLotTest {
     void should_the_right_car_when_fetch_twice_given_two_parked_cars_and_two_parking_tickets() {
         //given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingLot parkingLot1 = new ParkingLot();
         Car car = new Car();
         Car car1 = new Car();
         ParkingTicket parkingTicket = parkingLot.park(car);
-        ParkingTicket parkingTicket1 = parkingLot1.park(car1);
+        ParkingTicket parkingTicket1 = parkingLot.park(car1);
         //when
         Car fetchCar = parkingLot.fetch(parkingTicket);
-        Car fetchCar1 = parkingLot1.fetch(parkingTicket1);
+        Car fetchCar1 = parkingLot.fetch(parkingTicket1);
         //then
         Assertions.assertEquals(car, fetchCar);
         Assertions.assertEquals(car1, fetchCar1);
@@ -69,5 +68,18 @@ public class ParkingLotTest {
         Car fetchCarOnThe2ndTime = parkingLot.fetch(parkingTicket);
         //then
         Assertions.assertNull(fetchCarOnThe2ndTime);
+    }
+
+    @Test
+    void should_return_null_when_park_given_parking_lot_without_position_and_a_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car car = new Car();
+        Car parkedCar = new Car();
+        parkingLot.park(parkedCar);
+        //when
+        ParkingTicket parkingTicket = parkingLot.park(car);
+        //then
+        Assertions.assertNull(parkingTicket);
     }
 }
