@@ -20,7 +20,6 @@ public class SmartParkingBoyTest {
         Assertions.assertNotNull(parkingTicket);
         Assertions.assertEquals(9, parkingLot.getAvailableCapacity());
     }
-
     @Test
     void should_return_parked_car_when_fetch_given_parking_lot_with_parked_car_and_a_smart_parking_boy() {
         //given

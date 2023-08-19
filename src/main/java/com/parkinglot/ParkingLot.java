@@ -9,6 +9,7 @@ import java.util.Map;
 public class ParkingLot {
 
     private int initialCapacity = 10;
+    private double positionAvailable;
 
     public int getInitialCapacity() {
         return initialCapacity;
@@ -16,6 +17,11 @@ public class ParkingLot {
 
     public ParkingLot(int capacity) {
         this.initialCapacity = capacity;
+    }
+
+    public ParkingLot(double positionAvailable,int initialCapacity) {
+        this.initialCapacity = initialCapacity;
+        this.positionAvailable = positionAvailable;
     }
 
     public ParkingLot() {
