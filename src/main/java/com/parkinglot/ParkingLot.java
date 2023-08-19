@@ -41,7 +41,6 @@ public class ParkingLot {
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
-
         if (!isParkingTicketValid(parkingTicket)) {
             throw new UnrecognizedParkingTicketException();
         }
@@ -60,7 +59,4 @@ public class ParkingLot {
         return getInitialCapacity() - ticketCarMap.size();
     }
 
-    public Map<ParkingTicket, Car> getTicketAndCarMap() {
-        return ticketCarMap;
-    }
 }
