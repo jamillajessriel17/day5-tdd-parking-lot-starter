@@ -174,19 +174,19 @@ public class SuperParkingBoyTest {
         //then
         Assertions.assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
     }
-//    @Test
-//    void should_return_NoAvailablePositionException_when_park_given_super_parking_boy_with_two_full_parking_lots() {
-//        //given
-//        ParkingLot parkingLot = new ParkingLot(0);
-//        ParkingLot parkingLot1 = new ParkingLot(0);
-//        Car car = new Car();
-//        SuperParkingBoy superParkingBoy = new SuperParkingBoy(List.of(parkingLot, parkingLot1));
-//        //when
-//        NoAvailablePositionException noAvailablePositionException = Assertions
-//                .assertThrows(NoAvailablePositionException.class, () -> {
-//                    superParkingBoy.park(car);
-//                });
-//        //then
-//        Assertions.assertEquals("No available position.",noAvailablePositionException.getMessage());
-//    }
+    @Test
+    void should_return_NoAvailablePositionException_when_park_given_super_parking_boy_with_two_full_parking_lots() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(0);
+        ParkingLot parkingLot1 = new ParkingLot(0);
+        Car car = new Car();
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy(List.of(parkingLot, parkingLot1));
+        //when
+        NoAvailablePositionException noAvailablePositionException = Assertions
+                .assertThrows(NoAvailablePositionException.class, () -> {
+                    superParkingBoy.park(car);
+                });
+        //then
+        Assertions.assertEquals("No available position.",noAvailablePositionException.getMessage());
+    }
 }

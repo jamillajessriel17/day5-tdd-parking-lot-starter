@@ -1,6 +1,7 @@
 package com.parkinglot;
 
 import com.parkinglot.Interface.ParkingBoy;
+import com.parkinglot.exception.NoAvailablePositionException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -34,10 +35,10 @@ public class SuperParkingBoy implements ParkingBoy {
     @Override
     public void selectParkingLot(List<ParkingLot> parkingLotList) {
        if(parkingLotList.size()>0){
-           parkingLotList.stream()
+           parkingLot = parkingLotList.stream()
                    .filter(ParkingLot::hasAvailableCapacity)
                    .max((a, b) -> (int) (calculateRate(a) - calculateRate(b)))
-                   .ifPresent(parkingLot1 -> parkingLot = parkingLot1);
+                   .orElseThrow(NoAvailablePositionException::new);
        }
 
     }
