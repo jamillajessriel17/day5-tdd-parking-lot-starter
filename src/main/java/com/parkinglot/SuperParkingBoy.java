@@ -10,6 +10,7 @@ public class SuperParkingBoy implements ParkingBoy {
     private ParkingLot parkingLot;
     private List<ParkingLot> parkingLotList = new ArrayList<>();
     public SuperParkingBoy(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
     }
 
     public SuperParkingBoy(List<ParkingLot> parkingLotList) {
@@ -18,7 +19,7 @@ public class SuperParkingBoy implements ParkingBoy {
 
     @Override
     public ParkingTicket park(Car car) {
-        return null;
+        return parkingLot.park(car);
     }
 
     @Override
