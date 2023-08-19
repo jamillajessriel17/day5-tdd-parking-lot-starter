@@ -100,16 +100,28 @@ public class SuperParkingBoyTest {
     @Test
     void should_park_in_the_parking_lot_with_larger_position_rate_when_park_given_a_super_parking_boy_and_two_parking_lot_with_available_positions_and_a_car() {
         //given
-        ParkingLot parkingLot = new ParkingLot(3,10);
-        ParkingLot parkingLot1 = new ParkingLot(4,20);
+        ParkingLot parkingLot = new ParkingLot(15);
+        ParkingLot parkingLot1 = new ParkingLot(20);
+
         Car car = new Car();
-        List<ParkingLot> parkingLotList = List.of(parkingLot, parkingLot1);
+                //simulate 3 parked car in parkingLot
+        parkingLot.park(car);
+        parkingLot.park(car);
+        parkingLot.park(car);
+
+                //simulate 5 parked cars in parkingLot1
+        parkingLot1.park(car);
+        parkingLot1.park(car);
+        parkingLot1.park(car);
+        parkingLot1.park(car);
+        parkingLot1.park(car);
+        List<ParkingLot> parkingLotList = List.of(parkingLot,parkingLot1);
         SuperParkingBoy superParkingBoy = new SuperParkingBoy(parkingLotList);
         //when
         superParkingBoy.park(car);
         //then
-        Assertions.assertEquals(2, parkingLot.getAvailableCapacity());
-        Assertions.assertEquals(4, parkingLot1.getAvailableCapacity());
+        Assertions.assertEquals(11, parkingLot.getAvailableCapacity());
+        Assertions.assertEquals(15, parkingLot1.getAvailableCapacity());
     }
     @Test
     void should_return_right_car_when_fetch_the_two_cars_given_super_parking_boy_with_two_parking_lots_both_with_a_parked_car() {
