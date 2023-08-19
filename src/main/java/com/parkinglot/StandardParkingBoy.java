@@ -21,6 +21,6 @@ public class StandardParkingBoy {
         if(!parkingLot.isParkingTicketValid(parkingTicket)){
             throw new UnrecognizedParkingTicketException();
         }
-        return parkingLot.getTicketAndCarMap().get(parkingTicket);
+        return parkingLot.getTicketAndCarMap().remove(parkingTicket);
     }
 }
