@@ -9,7 +9,6 @@ import java.util.List;
 public interface ParkingBoy {
      ParkingTicket park(Car car);
      Car fetch(ParkingTicket parkingTicket);
-     void findCarInParkingLot(ParkingTicket parkingTicket);
 
      void selectParkingLot(List<ParkingLot> parkingLotList);
 

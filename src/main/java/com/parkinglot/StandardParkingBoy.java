@@ -37,19 +37,16 @@ public class StandardParkingBoy implements ParkingBoy {
         return parkingLot.park(car);
     }
 
-    @Override
     public void findCarInParkingLot(ParkingTicket parkingTicket) {
         parkingLotList.stream().
                 filter((element) -> element.isParkingTicketValid(parkingTicket))
                 .findFirst()
                 .ifPresent(element -> parkingLot = element);
-
     }
 
     @Override
     public Car fetch(ParkingTicket parkingTicket) {
         findCarInParkingLot(parkingTicket);
-
         return parkingLot.fetch(parkingTicket);
     }
 }

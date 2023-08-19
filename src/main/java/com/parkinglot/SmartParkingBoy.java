@@ -30,11 +30,6 @@ public class SmartParkingBoy implements ParkingBoy {
     }
 
     @Override
-    public void findCarInParkingLot(ParkingTicket parkingTicket) {
-
-    }
-
-    @Override
     public void selectParkingLot(List<ParkingLot> parkingLotList) {
         if (parkingLotList.size() > 0) {
             parkingLot = parkingLotList.stream()
