@@ -50,4 +50,8 @@ public class ParkingLot {
     public int getAvailableCapacity() {
         return getInitialCapacity() - ticketCarMap.size();
     }
+
+    public Map<ParkingTicket, Car> getTicketAndCarMap() {
+        return ticketCarMap;
+    }
 }

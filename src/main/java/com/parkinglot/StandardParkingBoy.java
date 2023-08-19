@@ -1,9 +1,5 @@
 package com.parkinglot;
 
-import com.parkinglot.exception.NoAvailablePositionException;
-
-import java.util.List;
-
 public class StandardParkingBoy {
 
     private final ParkingLot parkingLot;
@@ -13,10 +9,14 @@ public class StandardParkingBoy {
         this.parkingLot = parkingLot;
     }
 
-    public ParkingTicket park(Car car){
+    public ParkingTicket park(Car car) {
         ParkingTicket parkingTicket = new ParkingTicket();
-        parkingLot.addToTicketCarMap(parkingTicket,car);
-        return parkingTicket ;
+        parkingLot.addToTicketCarMap(parkingTicket, car);
+        return parkingTicket;
+    }
+
+    public Car fetch(ParkingTicket parkingTicket) {
+        return parkingLot.getTicketAndCarMap().get(parkingTicket);
     }
 }
 
