@@ -8,10 +8,14 @@ import java.util.Map;
 
 public class ParkingLot {
 
-    private int capacity = 10;
+    private int initialCapacity = 10;
+
+    public int getInitialCapacity() {
+        return initialCapacity;
+    }
 
     public ParkingLot(int capacity) {
-        this.capacity = capacity;
+        this.initialCapacity = capacity;
     }
 
     public ParkingLot() {
@@ -29,7 +33,7 @@ public class ParkingLot {
     }
 
     private boolean isFull() {
-        return ticketCarMap.size() == capacity;
+        return ticketCarMap.size() == initialCapacity;
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
@@ -38,5 +42,12 @@ public class ParkingLot {
             throw new UnrecognizedParkingTicketException();
         }
         return ticketCarMap.remove(parkingTicket);
+    }
+
+    public void addToTicketCarMap(ParkingTicket parkingTicket, Car car) {
+        ticketCarMap.put(parkingTicket, car);
+    }
+    public int getAvailableCapacity() {
+        return getInitialCapacity() - ticketCarMap.size();
     }
 }
