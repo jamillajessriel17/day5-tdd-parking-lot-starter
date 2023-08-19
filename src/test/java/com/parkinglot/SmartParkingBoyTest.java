@@ -98,7 +98,7 @@ public class SmartParkingBoyTest {
         Assertions.assertEquals("No available position.", noAvailablePositionException.getMessage());
     }
     @Test
-    void should_park_in_the__parking_lot_with_more_empty_positions_when_park_given_a_smart_parking_boy_and_two_parking_lot_with_available_positions_and_a_car() {
+    void should_park_in_the_parking_lot_with_more_empty_positions_when_park_given_a_smart_parking_boy_and_two_parking_lot_with_available_positions_and_a_car() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         ParkingLot parkingLot1 = new ParkingLot(9);
@@ -110,6 +110,23 @@ public class SmartParkingBoyTest {
         //then
         Assertions.assertEquals(1, parkingLot.getAvailableCapacity());
         Assertions.assertEquals(8, parkingLot1.getAvailableCapacity());
+    }
+    @Test
+    void should_return_right_car_when_fetch_the_two_cars_given_smart_parking_boy_with_two_parking_lots_both_with_a_parked_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot1 = new ParkingLot(5);
+        Car car = new Car();
+        Car car1 = new Car();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(List.of(parkingLot, parkingLot1));
+        ParkingTicket parkingTicket = smartParkingBoy.park(car);
+        ParkingTicket parkingTicket1 = smartParkingBoy.park(car1);
+        //when
+        Car fetchedCar = smartParkingBoy.fetch(parkingTicket);
+        Car fetchCar1 = smartParkingBoy.fetch(parkingTicket1);
+        //then
+        Assertions.assertEquals(car, fetchedCar);
+        Assertions.assertEquals(car1, fetchCar1);
     }
 
 
