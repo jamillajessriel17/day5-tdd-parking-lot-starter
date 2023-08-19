@@ -4,7 +4,6 @@ import com.parkinglot.Interface.ParkingBoy;
 import com.parkinglot.exception.NoAvailablePositionException;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class SuperParkingBoy implements ParkingBoy {
@@ -28,7 +27,7 @@ public class SuperParkingBoy implements ParkingBoy {
 
     @Override
     public Car fetch(ParkingTicket parkingTicket) {
-        findCarInParkingLot(parkingTicket);
+        findCarInParkingLots(parkingTicket);
         return parkingLot.fetch(parkingTicket);
     }
 
@@ -45,7 +44,7 @@ public class SuperParkingBoy implements ParkingBoy {
     private double calculateRate(ParkingLot parkingLot) {
         return ((double) (parkingLot.getAvailableCapacity()) / (double)parkingLot.getInitialCapacity())*100d;
     }
-    public void findCarInParkingLot(ParkingTicket parkingTicket) {
+    public void findCarInParkingLots(ParkingTicket parkingTicket) {
         parkingLotList.stream().
                 filter((element) -> element.isParkingTicketValid(parkingTicket))
                 .findFirst()

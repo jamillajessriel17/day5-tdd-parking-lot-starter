@@ -2,7 +2,6 @@ package com.parkinglot;
 
 import com.parkinglot.Interface.ParkingBoy;
 import com.parkinglot.exception.NoAvailablePositionException;
-import com.parkinglot.exception.UnrecognizedParkingTicketException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,14 +28,13 @@ public class StandardParkingBoy implements ParkingBoy {
 
         }
     }
-
     @Override
     public ParkingTicket park(Car car) {
         selectParkingLot(parkingLotList);
         return parkingLot.park(car);
     }
 
-    public void findCarInParkingLot(ParkingTicket parkingTicket) {
+    public void findCarInParkingLots(ParkingTicket parkingTicket) {
         parkingLotList.stream().
                 filter((element) -> element.isParkingTicketValid(parkingTicket))
                 .findFirst()
@@ -45,7 +43,7 @@ public class StandardParkingBoy implements ParkingBoy {
 
     @Override
     public Car fetch(ParkingTicket parkingTicket) {
-        findCarInParkingLot(parkingTicket);
+        findCarInParkingLots(parkingTicket);
         return parkingLot.fetch(parkingTicket);
     }
 }
