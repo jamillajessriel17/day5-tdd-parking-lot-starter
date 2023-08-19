@@ -1,12 +1,13 @@
 package com.parkinglot;
 
+import com.parkinglot.Interface.ParkingBoy;
 import com.parkinglot.exception.NoAvailablePositionException;
 import com.parkinglot.exception.UnrecognizedParkingTicketException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StandardParkingBoy {
+public class StandardParkingBoy implements ParkingBoy {
 
     private ParkingLot parkingLot;
     private List<ParkingLot> parkingLotList = new ArrayList<>();
@@ -15,7 +16,11 @@ public class StandardParkingBoy {
         this.parkingLotList = parkingLotList;
     }
 
-    private void selectParkingLot(List<ParkingLot> parkingLotList) {
+    public StandardParkingBoy(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
+    }
+
+    public void selectParkingLot(List<ParkingLot> parkingLotList) {
 
         if (parkingLotList.size() > 0) {
             parkingLot = parkingLotList.stream()
@@ -23,11 +28,6 @@ public class StandardParkingBoy {
                     .findFirst().orElseThrow(NoAvailablePositionException::new);
 
         }
-
-    }
-
-    public StandardParkingBoy(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
     }
 
     public ParkingTicket park(Car car) {
@@ -40,7 +40,7 @@ public class StandardParkingBoy {
         return parkingTicket;
     }
 
-    private void findCarInParkingLot(ParkingTicket parkingTicket) {
+    public void findCarInParkingLot(ParkingTicket parkingTicket) {
         parkingLotList.stream().
                 filter((element) -> element.isParkingTicketValid(parkingTicket))
                 .findFirst()
