@@ -24,7 +24,7 @@ public class SuperParkingBoy implements ParkingBoy {
 
     @Override
     public Car fetch(ParkingTicket parkingTicket) {
-        return null;
+        return parkingLot.fetch(parkingTicket);
     }
 
     @Override
