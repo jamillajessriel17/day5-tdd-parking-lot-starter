@@ -151,7 +151,7 @@ public class StandardParkingBoyTest {
     }
 
     @Test
-    void should_return_UnrecognizedParkingTicketException_when_fetch_given_standard_parking_boy_two_with_two_parking_lots_and_unrecognized_ticket() {
+    void should_return_UnrecognizedParkingTicketException_when_fetch_given_standard_parking_boy_with_two_parking_lots_and_unrecognized_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingLot parkingLot1 = new ParkingLot();
