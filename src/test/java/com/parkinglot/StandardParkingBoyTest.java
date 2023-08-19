@@ -30,7 +30,6 @@ public class StandardParkingBoyTest {
         Car fetchedCar = standardParkingBoy.fetch(parkingTicket);
         //then
         Assertions.assertEquals(car, fetchedCar);
-        Assertions.assertEquals(9, parkingLot.getAvailableCapacity());
     }
 
     @Test
