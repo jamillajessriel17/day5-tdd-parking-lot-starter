@@ -1,5 +1,6 @@
 package com.parkinglot;
 
+import com.parkinglot.exception.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -29,4 +30,22 @@ public class SmartParkingBoyTest {
         //then
         Assertions.assertEquals(car, fetchedCar);
     }
+    @Test
+    void should_return_the_right_car_when_fetch_given_a_parking_lot_with_two_parked_cars_and_a_smart_parking_boy() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        Car car1 = new Car();
+        ParkingTicket parkingTicket = parkingLot.park(car);
+        ParkingTicket parkingTicket1 = parkingLot.park(car1);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLot);
+        //when
+        Car fetchCar = smartParkingBoy.fetch(parkingTicket);
+        Car fetchCar1 = smartParkingBoy.fetch(parkingTicket1);
+        //then
+        Assertions.assertEquals(car, fetchCar);
+        Assertions.assertEquals(car1, fetchCar1);
+    }
+
+
 }
