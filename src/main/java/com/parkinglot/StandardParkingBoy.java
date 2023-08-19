@@ -1,5 +1,6 @@
 package com.parkinglot;
 
+import com.parkinglot.exception.NoAvailablePositionException;
 import com.parkinglot.exception.UnrecognizedParkingTicketException;
 
 public class StandardParkingBoy {
@@ -12,13 +13,16 @@ public class StandardParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
+        if (parkingLot.isFull()) {
+            throw new NoAvailablePositionException();
+        }
         ParkingTicket parkingTicket = new ParkingTicket();
         parkingLot.addToTicketCarMap(parkingTicket, car);
         return parkingTicket;
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
-        if(!parkingLot.isParkingTicketValid(parkingTicket)){
+        if (!parkingLot.isParkingTicketValid(parkingTicket)) {
             throw new UnrecognizedParkingTicketException();
         }
         return parkingLot.getTicketAndCarMap().remove(parkingTicket);
