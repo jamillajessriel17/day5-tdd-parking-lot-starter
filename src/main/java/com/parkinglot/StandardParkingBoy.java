@@ -3,9 +3,24 @@ package com.parkinglot;
 import com.parkinglot.exception.NoAvailablePositionException;
 import com.parkinglot.exception.UnrecognizedParkingTicketException;
 
+import java.util.List;
+
 public class StandardParkingBoy {
 
-    private final ParkingLot parkingLot;
+    private ParkingLot parkingLot;
+
+    public StandardParkingBoy(List<ParkingLot> parkingLotList) {
+        selectParkingLot(parkingLotList);
+    }
+
+    public void selectParkingLot(List<ParkingLot> parkingLotList) {
+
+        parkingLot = parkingLotList.stream()
+                .filter(ParkingLot::hasAvailableCapacity)
+                .findFirst()
+                .orElseThrow(NoAvailablePositionException::new);
+
+    }
 
 
     public StandardParkingBoy(ParkingLot parkingLot) {
