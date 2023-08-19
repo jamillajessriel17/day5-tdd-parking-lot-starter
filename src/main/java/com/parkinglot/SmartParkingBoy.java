@@ -13,9 +13,7 @@ public class SmartParkingBoy implements ParkingBoy {
 
     @Override
     public ParkingTicket park(Car car) {
-        ParkingTicket parkingTicket = new ParkingTicket();
-        parkingLot.addToTicketCarMap(parkingTicket, car);
-        return parkingTicket;
+        return parkingLot.park(car);
     }
 
     @Override
