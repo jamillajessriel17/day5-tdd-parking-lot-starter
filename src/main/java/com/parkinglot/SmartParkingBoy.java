@@ -18,18 +18,24 @@ public class SmartParkingBoy implements ParkingBoy {
     public SmartParkingBoy(List<ParkingLot> parkingLotList) {
         this.parkingLotList = parkingLotList;
     }
-
     @Override
     public ParkingTicket park(Car car) {
         selectParkingLot(parkingLotList);
         return parkingLot.park(car);
     }
 
-    @Override
-    public Car fetch(ParkingTicket parkingTicket) {
-        return parkingLot.fetch(parkingTicket);
+    public void findCarInParkingLots(ParkingTicket parkingTicket) {
+       parkingLot = parkingLotList.stream().
+                filter((element) -> element.isParkingTicketValid(parkingTicket))
+                .findFirst()
+                .get();
     }
 
+    @Override
+    public Car fetch(ParkingTicket parkingTicket) {
+        findCarInParkingLots(parkingTicket);
+        return parkingLot.fetch(parkingTicket);
+    }
     @Override
     public void selectParkingLot(List<ParkingLot> parkingLotList) {
         if (parkingLotList.size() > 0) {
