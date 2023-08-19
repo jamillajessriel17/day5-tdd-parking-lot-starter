@@ -36,6 +36,10 @@ public class ParkingLot {
         return ticketCarMap.size() == initialCapacity;
     }
 
+    public boolean hasAvailableCapacity() {
+        return !isFull();
+    }
+
     public Car fetch(ParkingTicket parkingTicket) {
 
         if (!ticketCarMap.containsKey(parkingTicket)) {
@@ -47,6 +51,7 @@ public class ParkingLot {
     public void addToTicketCarMap(ParkingTicket parkingTicket, Car car) {
         ticketCarMap.put(parkingTicket, car);
     }
+
     public int getAvailableCapacity() {
         return getInitialCapacity() - ticketCarMap.size();
     }
