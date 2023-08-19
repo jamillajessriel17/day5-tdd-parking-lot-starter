@@ -22,7 +22,6 @@ public class StandardParkingBoy implements ParkingBoy {
 
     @Override
     public void selectParkingLot(List<ParkingLot> parkingLotList) {
-
         if (parkingLotList.size() > 0) {
             parkingLot = parkingLotList.stream()
                     .filter(ParkingLot::hasAvailableCapacity)

@@ -27,18 +27,27 @@ public class SuperParkingBoy implements ParkingBoy {
 
     @Override
     public Car fetch(ParkingTicket parkingTicket) {
+        findCarInParkingLot(parkingTicket);
         return parkingLot.fetch(parkingTicket);
     }
 
     @Override
     public void selectParkingLot(List<ParkingLot> parkingLotList) {
-        parkingLotList.stream()
-                .filter(ParkingLot::hasAvailableCapacity)
-                .max((a, b) -> (int) (calculateRate(a) - calculateRate(b)))
-                .ifPresent(parkingLot1 -> parkingLot = parkingLot1);
+       if(parkingLotList.size()>0){
+           parkingLotList.stream()
+                   .filter(ParkingLot::hasAvailableCapacity)
+                   .max((a, b) -> (int) (calculateRate(a) - calculateRate(b)))
+                   .ifPresent(parkingLot1 -> parkingLot = parkingLot1);
+       }
 
     }
     private double calculateRate(ParkingLot parkingLot) {
         return ((double) (parkingLot.getAvailableCapacity()) / (double)parkingLot.getInitialCapacity())*100d;
+    }
+    public void findCarInParkingLot(ParkingTicket parkingTicket) {
+        parkingLotList.stream().
+                filter((element) -> element.isParkingTicketValid(parkingTicket))
+                .findFirst()
+                .ifPresent(element -> parkingLot = element);
     }
 }
