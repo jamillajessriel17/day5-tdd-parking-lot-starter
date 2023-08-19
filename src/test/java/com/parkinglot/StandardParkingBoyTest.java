@@ -117,4 +117,18 @@ public class StandardParkingBoyTest {
         Assertions.assertEquals(0, parkingLot.getAvailableCapacity());
         Assertions.assertEquals(9, parkingLot1.getAvailableCapacity());
     }
+
+    @Test
+    void should_park_on_the_second_parking_lot_when_park_given_a_standard_parking_boy_two_parking_lots__first_is_full_and_second_has_available_position() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(0);
+        ParkingLot parkingLot1 = new ParkingLot(8);
+        Car car = new Car();
+        List<ParkingLot> parkingLotList = List.of(parkingLot, parkingLot1);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLotList);
+        //when
+        standardParkingBoy.park(car);
+        //then
+        Assertions.assertEquals(7, parkingLot1.getAvailableCapacity());
+    }
 }

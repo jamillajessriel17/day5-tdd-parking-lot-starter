@@ -13,7 +13,7 @@ public class StandardParkingBoy {
         selectParkingLot(parkingLotList);
     }
 
-    public void selectParkingLot(List<ParkingLot> parkingLotList) {
+    private void selectParkingLot(List<ParkingLot> parkingLotList) {
 
         parkingLot = parkingLotList.stream()
                 .filter(ParkingLot::hasAvailableCapacity)
@@ -21,7 +21,6 @@ public class StandardParkingBoy {
                 .orElseThrow(NoAvailablePositionException::new);
 
     }
-
 
     public StandardParkingBoy(ParkingLot parkingLot) {
         this.parkingLot = parkingLot;
