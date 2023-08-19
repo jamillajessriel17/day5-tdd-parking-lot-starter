@@ -20,6 +20,7 @@ public class StandardParkingBoy implements ParkingBoy {
         this.parkingLot = parkingLot;
     }
 
+    @Override
     public void selectParkingLot(List<ParkingLot> parkingLotList) {
 
         if (parkingLotList.size() > 0) {
@@ -30,6 +31,7 @@ public class StandardParkingBoy implements ParkingBoy {
         }
     }
 
+    @Override
     public ParkingTicket park(Car car) {
         selectParkingLot(parkingLotList);
         if (!parkingLot.hasAvailableCapacity()) {
@@ -40,6 +42,7 @@ public class StandardParkingBoy implements ParkingBoy {
         return parkingTicket;
     }
 
+    @Override
     public void findCarInParkingLot(ParkingTicket parkingTicket) {
         parkingLotList.stream().
                 filter((element) -> element.isParkingTicketValid(parkingTicket))
@@ -48,6 +51,7 @@ public class StandardParkingBoy implements ParkingBoy {
 
     }
 
+    @Override
     public Car fetch(ParkingTicket parkingTicket) {
         findCarInParkingLot(parkingTicket);
         if (!parkingLot.isParkingTicketValid(parkingTicket)) {
