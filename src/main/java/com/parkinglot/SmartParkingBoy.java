@@ -1,6 +1,7 @@
 package com.parkinglot;
 
 import com.parkinglot.Interface.ParkingBoy;
+import com.parkinglot.exception.NoAvailablePositionException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -35,7 +36,7 @@ public class SmartParkingBoy implements ParkingBoy {
             parkingLot = parkingLotList.stream()
                     .filter(ParkingLot::hasAvailableCapacity)
                     .max(Comparator.comparingInt(ParkingLot::getAvailableCapacity))
-                    .orElse(null);
+                    .orElseThrow(NoAvailablePositionException::new);
         }
     }
 }
