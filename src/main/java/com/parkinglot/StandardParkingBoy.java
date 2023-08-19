@@ -1,5 +1,7 @@
 package com.parkinglot;
 
+import com.parkinglot.exception.UnrecognizedParkingTicketException;
+
 public class StandardParkingBoy {
 
     private final ParkingLot parkingLot;
@@ -16,17 +18,9 @@ public class StandardParkingBoy {
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
+        if(!parkingLot.isParkingTicketValid(parkingTicket)){
+            throw new UnrecognizedParkingTicketException();
+        }
         return parkingLot.getTicketAndCarMap().get(parkingTicket);
     }
 }
-
-//    private final List<ParkingLot> parkingLotList;
-//public StandardParkingBoy(List<ParkingLot> parkingLotList) {
-//    this.parkingLotList = parkingLotList;
-//}
-
-//        return parkingLotList.stream()
-//                .filter(ParkingLot::hasAvailableCapacity)
-//                .findFirst()
-//                .orElseThrow(NoAvailablePositionException::new)
-//                .park(car);
