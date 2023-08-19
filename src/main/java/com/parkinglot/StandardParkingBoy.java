@@ -13,7 +13,7 @@ public class StandardParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-        if (parkingLot.isFull()) {
+        if (!parkingLot.hasAvailableCapacity()) {
             throw new NoAvailablePositionException();
         }
         ParkingTicket parkingTicket = new ParkingTicket();

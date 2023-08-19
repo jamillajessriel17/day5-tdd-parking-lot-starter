@@ -32,7 +32,7 @@ public class ParkingLot {
         return parkingTicket;
     }
 
-    public boolean isFull() {
+    private boolean isFull() {
         return ticketCarMap.size() == initialCapacity;
     }
 
