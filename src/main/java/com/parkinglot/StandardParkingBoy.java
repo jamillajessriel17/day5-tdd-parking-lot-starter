@@ -19,6 +19,14 @@ public class StandardParkingBoy implements ParkingBoy {
         this.parkingLot = parkingLot;
     }
 
+    public StandardParkingBoy() {
+    }
+
+    public StandardParkingBoy(ParkingLot parkingLot, List<ParkingLot> parkingLotList) {
+        this.parkingLot = parkingLot;
+        this.parkingLotList = parkingLotList;
+    }
+
     @Override
     public int getNumberOfParkingLot() {
         return parkingLotList.size();
