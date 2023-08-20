@@ -12,6 +12,7 @@ public class SuperParkingBoy implements ParkingBoy {
     private List<ParkingLot> parkingLotList = new ArrayList<>();
 
     public SuperParkingBoy(ParkingLot parkingLot) {
+
         this.parkingLot = parkingLot;
     }
 
@@ -33,21 +34,29 @@ public class SuperParkingBoy implements ParkingBoy {
 
     @Override
     public void selectParkingLot(List<ParkingLot> parkingLotList) {
-       if(parkingLotList.size()>0){
-           parkingLot = parkingLotList.stream()
-                   .filter(ParkingLot::hasAvailableCapacity)
-                   .max((a, b) -> (int) (calculateRate(a) - calculateRate(b)))
-                   .orElseThrow(NoAvailablePositionException::new);
-       }
+        if (parkingLotList.size() > 0) {
+            parkingLot = parkingLotList.stream()
+                    .filter(ParkingLot::hasAvailableCapacity)
+                    .max((a, b) -> (int) (calculateRate(a) - calculateRate(b)))
+                    .orElseThrow(NoAvailablePositionException::new);
+        }
 
     }
+
     private double calculateRate(ParkingLot parkingLot) {
-        return ((double) (parkingLot.getAvailableCapacity()) / (double)parkingLot.getInitialCapacity())*100d;
+        return ((double) (parkingLot.getAvailableCapacity()) / (double) parkingLot.getInitialCapacity()) * 100d;
     }
+
+    @Override
     public void findCarInParkingLots(ParkingTicket parkingTicket) {
         parkingLotList.stream().
                 filter((element) -> element.isParkingTicketValid(parkingTicket))
                 .findFirst()
                 .ifPresent(element -> parkingLot = element);
+    }
+
+    @Override
+    public int getNumberOfParkingLot() {
+        return parkingLotList.size();
     }
 }

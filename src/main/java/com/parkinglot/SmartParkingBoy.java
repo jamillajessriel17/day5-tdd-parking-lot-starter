@@ -2,7 +2,6 @@ package com.parkinglot;
 
 import com.parkinglot.Interface.ParkingBoy;
 import com.parkinglot.exception.NoAvailablePositionException;
-import com.parkinglot.exception.UnrecognizedParkingTicketException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -26,11 +25,18 @@ public class SmartParkingBoy implements ParkingBoy {
         return parkingLot.park(car);
     }
 
+    @Override
     public void findCarInParkingLots(ParkingTicket parkingTicket) {
         parkingLotList.stream().
                 filter((element) -> element.isParkingTicketValid(parkingTicket))
                 .findFirst()
                 .ifPresent(element -> parkingLot = element);
+    }
+
+
+    @Override
+    public int getNumberOfParkingLot() {
+        return parkingLotList.size();
     }
 
     @Override

@@ -20,6 +20,11 @@ public class StandardParkingBoy implements ParkingBoy {
     }
 
     @Override
+    public int getNumberOfParkingLot() {
+        return parkingLotList.size();
+    }
+
+    @Override
     public void selectParkingLot(List<ParkingLot> parkingLotList) {
         if (parkingLotList.size() > 0) {
             parkingLot = parkingLotList.stream()
@@ -28,12 +33,14 @@ public class StandardParkingBoy implements ParkingBoy {
 
         }
     }
+
     @Override
     public ParkingTicket park(Car car) {
         selectParkingLot(parkingLotList);
         return parkingLot.park(car);
     }
 
+    @Override
     public void findCarInParkingLots(ParkingTicket parkingTicket) {
         parkingLotList.stream().
                 filter((element) -> element.isParkingTicketValid(parkingTicket))
