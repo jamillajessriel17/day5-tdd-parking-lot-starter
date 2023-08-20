@@ -31,8 +31,9 @@ public class ParkingLotServiceManagerTest {
         //when
         parkingLotServiceManager.chooseParkingBoy();
         //then
-        Assertions.assertEquals(smartParkingBoy,parkingLotServiceManager.getParkingBoy());
+        Assertions.assertEquals(smartParkingBoy, parkingLotServiceManager.getParkingBoy());
     }
+
     @Test
     void should_return_ticket_when_park_given_parking_lot_manager_and_two_parking_boys_with_parking_lots_and_a_car() {
         //given
@@ -47,5 +48,22 @@ public class ParkingLotServiceManagerTest {
         ParkingTicket parkingTicket = parkingLotServiceManager.getParkingBoy().park(car);
         //then
         Assertions.assertNotNull(parkingTicket);
+    }
+
+    @Test
+    void should_return_car_when_fetch_given_parking_lot_manager_and_two_parking_boys_with_parking_lots_and_ticket() {
+        //given
+        ParkingBoy standardParkingBoy = new StandardParkingBoy(List.of(new ParkingLot(), new ParkingLot()));
+        ParkingBoy smartParkingBoy = new SmartParkingBoy(List.of(new ParkingLot(), new ParkingLot(), new ParkingLot()));
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager();
+        parkingLotServiceManager.addParkingBoy(standardParkingBoy);
+        parkingLotServiceManager.addParkingBoy(smartParkingBoy);
+        Car car = new Car();
+        parkingLotServiceManager.chooseParkingBoy();
+        ParkingTicket parkingTicket = parkingLotServiceManager.getParkingBoy().park(car);
+        //when
+        Car fetchedCar = parkingLotServiceManager.getParkingBoy().fetch(parkingTicket);
+        //then
+        Assertions.assertEquals(car, fetchedCar);
     }
 }
