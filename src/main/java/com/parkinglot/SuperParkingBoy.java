@@ -28,7 +28,7 @@ public class SuperParkingBoy implements ParkingBoy {
 
     @Override
     public Car fetch(ParkingTicket parkingTicket) {
-        if(!parkingLotList.isEmpty()){
+        if (!parkingLotList.isEmpty()) {
             parkingLot = findCarInParkingLots(parkingTicket, parkingLotList);
         }
         return parkingLot.fetch(parkingTicket);
@@ -42,13 +42,11 @@ public class SuperParkingBoy implements ParkingBoy {
                     .max((a, b) -> (int) (calculateRate(a) - calculateRate(b)))
                     .orElseThrow(NoAvailablePositionException::new);
         }
-
     }
 
     private double calculateRate(ParkingLot parkingLot) {
         return ((double) (parkingLot.getAvailableCapacity()) / (double) parkingLot.getInitialCapacity()) * 100d;
     }
-
 
     @Override
     public int getNumberOfParkingLot() {

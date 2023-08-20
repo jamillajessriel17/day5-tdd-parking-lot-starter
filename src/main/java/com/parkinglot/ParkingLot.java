@@ -55,10 +55,6 @@ public class ParkingLot {
         return ticketCarMap.containsKey(parkingTicket);
     }
 
-    public void addToTicketCarMap(ParkingTicket parkingTicket, Car car) {
-        ticketCarMap.put(parkingTicket, car);
-    }
-
     public int getAvailableCapacity() {
         return getInitialCapacity() - ticketCarMap.size();
     }

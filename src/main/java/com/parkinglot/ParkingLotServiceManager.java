@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class ParkingLotServiceManager extends StandardParkingBoy{
+public class ParkingLotServiceManager extends StandardParkingBoy {
 
     private ParkingBoy parkingBoy;
     private final List<ParkingBoy> parkingBoyManagementList = new ArrayList<>();
@@ -16,6 +16,7 @@ public class ParkingLotServiceManager extends StandardParkingBoy{
     public ParkingLotServiceManager(List<ParkingLot> parkingLotList) {
         super(parkingLotList);
     }
+
     public ParkingLotServiceManager(ParkingLot parkingLot) {
         super(parkingLot);
     }
@@ -45,18 +46,19 @@ public class ParkingLotServiceManager extends StandardParkingBoy{
         return parkingBoy;
     }
 
-    public void commandParkingBoyToPark(Car car){
-        try{
+    public void commandParkingBoyToPark(Car car) {
+        try {
             parkingBoy.park(car);
-        }catch (Exception e){
-            throw  new ParkingBoyFailedToDoTheOperationException();
+        } catch (Exception e) {
+            throw new ParkingBoyFailedToDoTheOperationException();
         }
     }
-    public void commandParkingBoyToFetch(ParkingTicket parkingTicket){
-        try{
+
+    public void commandParkingBoyToFetch(ParkingTicket parkingTicket) {
+        try {
             parkingBoy.fetch(parkingTicket);
-        }catch (Exception e){
-            throw  new ParkingBoyFailedToDoTheOperationException();
+        } catch (Exception e) {
+            throw new ParkingBoyFailedToDoTheOperationException();
         }
     }
 

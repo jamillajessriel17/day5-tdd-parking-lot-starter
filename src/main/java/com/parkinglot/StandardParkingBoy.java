@@ -22,11 +22,6 @@ public class StandardParkingBoy implements ParkingBoy {
     public StandardParkingBoy() {
     }
 
-    public StandardParkingBoy(ParkingLot parkingLot, List<ParkingLot> parkingLotList) {
-        this.parkingLot = parkingLot;
-        this.parkingLotList = parkingLotList;
-    }
-
     @Override
     public int getNumberOfParkingLot() {
         return parkingLotList.size();
@@ -38,7 +33,6 @@ public class StandardParkingBoy implements ParkingBoy {
             parkingLot = parkingLotList.stream()
                     .filter(ParkingLot::hasAvailableCapacity)
                     .findFirst().orElseThrow(NoAvailablePositionException::new);
-
         }
     }
 
@@ -48,11 +42,9 @@ public class StandardParkingBoy implements ParkingBoy {
         return parkingLot.park(car);
     }
 
-
-
     @Override
     public Car fetch(ParkingTicket parkingTicket) {
-        if(!parkingLotList.isEmpty()){
+        if (!parkingLotList.isEmpty()) {
             parkingLot = findCarInParkingLots(parkingTicket, parkingLotList);
         }
         return parkingLot.fetch(parkingTicket);

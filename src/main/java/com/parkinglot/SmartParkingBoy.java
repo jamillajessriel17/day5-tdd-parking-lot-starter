@@ -32,7 +32,7 @@ public class SmartParkingBoy implements ParkingBoy {
 
     @Override
     public Car fetch(ParkingTicket parkingTicket) {
-        if(!parkingLotList.isEmpty()){
+        if (!parkingLotList.isEmpty()) {
             parkingLot = findCarInParkingLots(parkingTicket, parkingLotList);
         }
         return parkingLot.fetch(parkingTicket);
