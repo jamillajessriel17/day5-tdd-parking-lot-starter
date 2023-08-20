@@ -2,6 +2,7 @@ package com.parkinglot;
 
 import com.parkinglot.Interface.ParkingBoy;
 import com.parkinglot.exception.NoAvailablePositionException;
+import com.parkinglot.exception.ParkingBoyFailedToDoTheOperationException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -40,6 +41,23 @@ public class ParkingLotServiceManager extends StandardParkingBoy{
     }
 
     public ParkingBoy getParkingBoy() {
+
         return parkingBoy;
     }
+
+    public void commandParkingBoyToPark(Car car){
+        try{
+            parkingBoy.park(car);
+        }catch (Exception e){
+            throw  new ParkingBoyFailedToDoTheOperationException();
+        }
+    }
+    public void commandParkingBoyToFetch(ParkingTicket parkingTicket){
+        try{
+            parkingBoy.fetch(parkingTicket);
+        }catch (Exception e){
+            throw  new ParkingBoyFailedToDoTheOperationException();
+        }
+    }
+
 }

@@ -2,6 +2,7 @@ package com.parkinglot;
 
 import com.parkinglot.Interface.ParkingBoy;
 import com.parkinglot.exception.NoAvailablePositionException;
+import com.parkinglot.exception.ParkingBoyFailedToDoTheOperationException;
 import com.parkinglot.exception.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -284,5 +285,43 @@ public class ParkingLotServiceManagerTest {
                 });
         //then
         Assertions.assertEquals("No available position.", noAvailablePositionException.getMessage());
+    }
+
+    @Test
+    void should_return_parking_boy_failed_to_do_the_operation_exception_when_park_given_parking_lot_manager_a_parking_boy_with_a_full_parking_lot_and_a_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(0);
+        ParkingBoy parkingBoy = new StandardParkingBoy(parkingLot);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager();
+        parkingLotServiceManager.addParkingBoy(parkingBoy);
+        parkingLotServiceManager.chooseParkingBoy();
+        Car car = new Car();
+
+        //when
+        ParkingBoyFailedToDoTheOperationException parkingBoyFailedToDoTheOperationException = Assertions
+                .assertThrows(ParkingBoyFailedToDoTheOperationException.class, () -> {
+                    parkingLotServiceManager.commandParkingBoyToPark(car);
+                });
+        //then
+        Assertions.assertEquals("Parking boy failed to the operation.", parkingBoyFailedToDoTheOperationException.getMessage());
+    }
+    @Test
+    void should_return_parking_boy_failed_to_do_the_operation_exception_when_fetch_given_parking_lot_manager_a_parking_boy_with_a_full_parking_lot_and_wrong_ticket() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingBoy parkingBoy = new StandardParkingBoy(parkingLot);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager();
+        parkingLotServiceManager.addParkingBoy(parkingBoy);
+        parkingLotServiceManager.chooseParkingBoy();
+        Car car = new Car();
+        ParkingTicket wrongParkingTicket = new ParkingTicket();
+        parkingLotServiceManager.commandParkingBoyToPark(car);
+        //when
+        ParkingBoyFailedToDoTheOperationException parkingBoyFailedToDoTheOperationException = Assertions
+                .assertThrows(ParkingBoyFailedToDoTheOperationException.class, () -> {
+                    parkingLotServiceManager.commandParkingBoyToFetch(wrongParkingTicket);
+                });
+        //then
+        Assertions.assertEquals("Parking boy failed to the operation.", parkingBoyFailedToDoTheOperationException.getMessage());
     }
 }
