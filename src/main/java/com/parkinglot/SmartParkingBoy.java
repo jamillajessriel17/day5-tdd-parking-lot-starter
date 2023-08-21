@@ -30,6 +30,7 @@ public class SmartParkingBoy implements ParkingBoy {
         return parkingLotList.size();
     }
 
+    //TODO: since this method had the same return from all parking boy classes, I suggest this can be put into ParkingBoy class to lessen duplicate methods
     @Override
     public Car fetch(ParkingTicket parkingTicket) {
         if (!parkingLotList.isEmpty()) {
@@ -37,6 +38,7 @@ public class SmartParkingBoy implements ParkingBoy {
         }
         return parkingLot.fetch(parkingTicket);
     }
+
 
     @Override
     public void selectParkingLot(List<ParkingLot> parkingLotList) {

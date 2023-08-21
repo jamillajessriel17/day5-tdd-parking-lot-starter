@@ -26,6 +26,7 @@ public class SuperParkingBoy implements ParkingBoy {
         return parkingLot.park(car);
     }
 
+    //TODO: since this method had the same return from all parking boy classes, I suggest this can be put into ParkingBoy class to lessen duplicate methods
     @Override
     public Car fetch(ParkingTicket parkingTicket) {
         if (!parkingLotList.isEmpty()) {
